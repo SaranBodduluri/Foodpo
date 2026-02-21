@@ -1,0 +1,202 @@
+[
+    {
+        "item_id": "m11",
+        "rating": 4.5,
+        "review_count": 120
+    },
+    {
+        "item_id": "m12",
+        "rating": 4.2,
+        "review_count": 85
+    },
+    {
+        "item_id": "m13",
+        "rating": 4.8,
+        "review_count": 210
+    },
+    {
+        "item_id": "m14",
+        "rating": 4.1,
+        "review_count": 65
+    },
+    {
+        "item_id": "m15",
+        "rating": 4.6,
+        "review_count": 150
+    },
+    {
+        "item_id": "m21",
+        "rating": 4.7,
+        "review_count": 240
+    },
+    {
+        "item_id": "m22",
+        "rating": 4.3,
+        "review_count": 110
+    },
+    {
+        "item_id": "m23",
+        "rating": 4.9,
+        "review_count": 320
+    },
+    {
+        "item_id": "m24",
+        "rating": 4.0,
+        "review_count": 45
+    },
+    {
+        "item_id": "m25",
+        "rating": 4.4,
+        "review_count": 95
+    },
+    {
+        "item_id": "m31",
+        "rating": 4.6,
+        "review_count": 500
+    },
+    {
+        "item_id": "m32",
+        "rating": 4.2,
+        "review_count": 130
+    },
+    {
+        "item_id": "m33",
+        "rating": 4.8,
+        "review_count": 410
+    },
+    {
+        "item_id": "m34",
+        "rating": 4.5,
+        "review_count": 220
+    },
+    {
+        "item_id": "m35",
+        "rating": 4.3,
+        "review_count": 105
+    },
+    {
+        "item_id": "m41",
+        "rating": 4.9,
+        "review_count": 600
+    },
+    {
+        "item_id": "m42",
+        "rating": 4.7,
+        "review_count": 480
+    },
+    {
+        "item_id": "m43",
+        "rating": 4.4,
+        "review_count": 190
+    },
+    {
+        "item_id": "m44",
+        "rating": 4.8,
+        "review_count": 350
+    },
+    {
+        "item_id": "m45",
+        "rating": 4.5,
+        "review_count": 240
+    },
+    {
+        "item_id": "m51",
+        "rating": 4.6,
+        "review_count": 310
+    },
+    {
+        "item_id": "m52",
+        "rating": 4.5,
+        "review_count": 280
+    },
+    {
+        "item_id": "m53",
+        "rating": 4.2,
+        "review_count": 140
+    },
+    {
+        "item_id": "m54",
+        "rating": 4.7,
+        "review_count": 195
+    },
+    {
+        "item_id": "m55",
+        "rating": 4.4,
+        "review_count": 160
+    },
+    {
+        "item_id": "m61",
+        "rating": 4.8,
+        "review_count": 420
+    },
+    {
+        "item_id": "m62",
+        "rating": 4.3,
+        "review_count": 115
+    },
+    {
+        "item_id": "m63",
+        "rating": 4.6,
+        "review_count": 230
+    },
+    {
+        "item_id": "m64",
+        "rating": 4.1,
+        "review_count": 80
+    },
+    {
+        "item_id": "m65",
+        "rating": 4.2,
+        "review_count": 95
+    },
+    {
+        "item_id": "m71",
+        "rating": 4.7,
+        "review_count": 380
+    },
+    {
+        "item_id": "m72",
+        "rating": 4.9,
+        "review_count": 540
+    },
+    {
+        "item_id": "m73",
+        "rating": 4.8,
+        "review_count": 490
+    },
+    {
+        "item_id": "m74",
+        "rating": 4.4,
+        "review_count": 170
+    },
+    {
+        "item_id": "m75",
+        "rating": 4.6,
+        "review_count": 210
+    },
+    {
+        "item_id": "m81",
+        "rating": 4.5,
+        "review_count": 260
+    },
+    {
+        "item_id": "m82",
+        "rating": 4.6,
+        "review_count": 320
+    },
+    {
+        "item_id": "m83",
+        "rating": 4.3,
+        "review_count": 145
+    },
+    {
+        "item_id": "m84",
+        "rating": 4.4,
+        "review_count": 180
+    },
+    {
+        "item_id": "m85",
+        "rating": 4.7,
+        "review_count": 290
+    }
+]

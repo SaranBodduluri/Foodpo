@@ -1,0 +1,10 @@
+[
+  { "id": "r1", "name": "Green Bowl Co.", "neighborhood": "Downtown" },
+  { "id": "r2", "name": "Protein House", "neighborhood": "Midtown" },
+  { "id": "r3", "name": "Burger Barn", "neighborhood": "Uptown" },
+  { "id": "r4", "name": "Sushi Express", "neighborhood": "Downtown" },
+  { "id": "r5", "name": "Taco Fiesta", "neighborhood": "Westside" },
+  { "id": "r6", "name": "Vegan Delights", "neighborhood": "Eastside" },
+  { "id": "r7", "name": "Pizza Planet", "neighborhood": "Midtown" },
+  { "id": "r8", "name": "Salad Station", "neighborhood": "Uptown" }
+]

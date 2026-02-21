@@ -1,0 +1,722 @@
+[
+    {
+        "item_id": "m11",
+        "platform_name": "UberEats",
+        "base_price": 12.99,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m11",
+        "platform_name": "DoorDash",
+        "base_price": 13.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m11",
+        "platform_name": "Grubhub",
+        "base_price": 12.50,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m12",
+        "platform_name": "UberEats",
+        "base_price": 10.99,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m12",
+        "platform_name": "DoorDash",
+        "base_price": 11.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m12",
+        "platform_name": "Grubhub",
+        "base_price": 10.50,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m13",
+        "platform_name": "UberEats",
+        "base_price": 15.99,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m13",
+        "platform_name": "DoorDash",
+        "base_price": 16.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m13",
+        "platform_name": "Grubhub",
+        "base_price": 15.50,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m14",
+        "platform_name": "UberEats",
+        "base_price": 14.99,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m14",
+        "platform_name": "DoorDash",
+        "base_price": 15.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m14",
+        "platform_name": "Grubhub",
+        "base_price": 14.50,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m15",
+        "platform_name": "UberEats",
+        "base_price": 9.99,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m15",
+        "platform_name": "DoorDash",
+        "base_price": 10.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m15",
+        "platform_name": "Grubhub",
+        "base_price": 9.50,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m21",
+        "platform_name": "UberEats",
+        "base_price": 17.99,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m21",
+        "platform_name": "DoorDash",
+        "base_price": 18.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m21",
+        "platform_name": "Grubhub",
+        "base_price": 17.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m22",
+        "platform_name": "UberEats",
+        "base_price": 14.99,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m22",
+        "platform_name": "DoorDash",
+        "base_price": 15.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m22",
+        "platform_name": "Grubhub",
+        "base_price": 14.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m23",
+        "platform_name": "UberEats",
+        "base_price": 16.99,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m23",
+        "platform_name": "DoorDash",
+        "base_price": 17.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m23",
+        "platform_name": "Grubhub",
+        "base_price": 16.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m24",
+        "platform_name": "UberEats",
+        "base_price": 13.99,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m24",
+        "platform_name": "DoorDash",
+        "base_price": 14.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m24",
+        "platform_name": "Grubhub",
+        "base_price": 13.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m25",
+        "platform_name": "UberEats",
+        "base_price": 11.99,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m25",
+        "platform_name": "DoorDash",
+        "base_price": 12.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m25",
+        "platform_name": "Grubhub",
+        "base_price": 11.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m31",
+        "platform_name": "UberEats",
+        "base_price": 13.99,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m31",
+        "platform_name": "DoorDash",
+        "base_price": 14.50,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m31",
+        "platform_name": "Grubhub",
+        "base_price": 13.00,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m32",
+        "platform_name": "UberEats",
+        "base_price": 12.99,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m32",
+        "platform_name": "DoorDash",
+        "base_price": 13.50,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m32",
+        "platform_name": "Grubhub",
+        "base_price": 12.00,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m33",
+        "platform_name": "UberEats",
+        "base_price": 15.99,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m33",
+        "platform_name": "DoorDash",
+        "base_price": 16.50,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m33",
+        "platform_name": "Grubhub",
+        "base_price": 15.00,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m34",
+        "platform_name": "UberEats",
+        "base_price": 14.99,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m34",
+        "platform_name": "DoorDash",
+        "base_price": 15.50,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m34",
+        "platform_name": "Grubhub",
+        "base_price": 14.00,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m35",
+        "platform_name": "UberEats",
+        "base_price": 11.99,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m35",
+        "platform_name": "DoorDash",
+        "base_price": 12.50,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m35",
+        "platform_name": "Grubhub",
+        "base_price": 11.00,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m41",
+        "platform_name": "UberEats",
+        "base_price": 12.99,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m41",
+        "platform_name": "DoorDash",
+        "base_price": 12.50,
+        "delivery_fee": 5.99
+    },
+    {
+        "item_id": "m41",
+        "platform_name": "Grubhub",
+        "base_price": 13.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m42",
+        "platform_name": "UberEats",
+        "base_price": 13.99,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m42",
+        "platform_name": "DoorDash",
+        "base_price": 13.50,
+        "delivery_fee": 5.99
+    },
+    {
+        "item_id": "m42",
+        "platform_name": "Grubhub",
+        "base_price": 14.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m43",
+        "platform_name": "UberEats",
+        "base_price": 9.99,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m43",
+        "platform_name": "DoorDash",
+        "base_price": 9.50,
+        "delivery_fee": 5.99
+    },
+    {
+        "item_id": "m43",
+        "platform_name": "Grubhub",
+        "base_price": 10.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m44",
+        "platform_name": "UberEats",
+        "base_price": 16.99,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m44",
+        "platform_name": "DoorDash",
+        "base_price": 16.50,
+        "delivery_fee": 5.99
+    },
+    {
+        "item_id": "m44",
+        "platform_name": "Grubhub",
+        "base_price": 17.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m45",
+        "platform_name": "UberEats",
+        "base_price": 9.00,
+        "delivery_fee": 4.99
+    },
+    {
+        "item_id": "m45",
+        "platform_name": "DoorDash",
+        "base_price": 9.50,
+        "delivery_fee": 5.99
+    },
+    {
+        "item_id": "m45",
+        "platform_name": "Grubhub",
+        "base_price": 9.00,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m51",
+        "platform_name": "UberEats",
+        "base_price": 13.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m51",
+        "platform_name": "DoorDash",
+        "base_price": 14.00,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m51",
+        "platform_name": "Grubhub",
+        "base_price": 13.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m52",
+        "platform_name": "UberEats",
+        "base_price": 11.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m52",
+        "platform_name": "DoorDash",
+        "base_price": 12.00,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m52",
+        "platform_name": "Grubhub",
+        "base_price": 11.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m53",
+        "platform_name": "UberEats",
+        "base_price": 14.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m53",
+        "platform_name": "DoorDash",
+        "base_price": 15.00,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m53",
+        "platform_name": "Grubhub",
+        "base_price": 14.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m54",
+        "platform_name": "UberEats",
+        "base_price": 15.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m54",
+        "platform_name": "DoorDash",
+        "base_price": 16.00,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m54",
+        "platform_name": "Grubhub",
+        "base_price": 15.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m55",
+        "platform_name": "UberEats",
+        "base_price": 10.50,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m55",
+        "platform_name": "DoorDash",
+        "base_price": 11.00,
+        "delivery_fee": 0.99
+    },
+    {
+        "item_id": "m55",
+        "platform_name": "Grubhub",
+        "base_price": 10.00,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m61",
+        "platform_name": "UberEats",
+        "base_price": 14.99,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m61",
+        "platform_name": "DoorDash",
+        "base_price": 14.50,
+        "delivery_fee": 2.49
+    },
+    {
+        "item_id": "m61",
+        "platform_name": "Grubhub",
+        "base_price": 15.50,
+        "delivery_fee": 1.49
+    },
+    {
+        "item_id": "m62",
+        "platform_name": "UberEats",
+        "base_price": 12.99,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m62",
+        "platform_name": "DoorDash",
+        "base_price": 12.50,
+        "delivery_fee": 2.49
+    },
+    {
+        "item_id": "m62",
+        "platform_name": "Grubhub",
+        "base_price": 13.50,
+        "delivery_fee": 1.49
+    },
+    {
+        "item_id": "m63",
+        "platform_name": "UberEats",
+        "base_price": 11.99,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m63",
+        "platform_name": "DoorDash",
+        "base_price": 11.50,
+        "delivery_fee": 2.49
+    },
+    {
+        "item_id": "m63",
+        "platform_name": "Grubhub",
+        "base_price": 12.50,
+        "delivery_fee": 1.49
+    },
+    {
+        "item_id": "m64",
+        "platform_name": "UberEats",
+        "base_price": 9.99,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m64",
+        "platform_name": "DoorDash",
+        "base_price": 9.50,
+        "delivery_fee": 2.49
+    },
+    {
+        "item_id": "m64",
+        "platform_name": "Grubhub",
+        "base_price": 10.50,
+        "delivery_fee": 1.49
+    },
+    {
+        "item_id": "m65",
+        "platform_name": "UberEats",
+        "base_price": 10.99,
+        "delivery_fee": 3.49
+    },
+    {
+        "item_id": "m65",
+        "platform_name": "DoorDash",
+        "base_price": 10.50,
+        "delivery_fee": 2.49
+    },
+    {
+        "item_id": "m65",
+        "platform_name": "Grubhub",
+        "base_price": 11.50,
+        "delivery_fee": 1.49
+    },
+    {
+        "item_id": "m71",
+        "platform_name": "UberEats",
+        "base_price": 14.99,
+        "delivery_fee": 2.50
+    },
+    {
+        "item_id": "m71",
+        "platform_name": "DoorDash",
+        "base_price": 15.50,
+        "delivery_fee": 3.50
+    },
+    {
+        "item_id": "m71",
+        "platform_name": "Grubhub",
+        "base_price": 14.00,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m72",
+        "platform_name": "UberEats",
+        "base_price": 16.99,
+        "delivery_fee": 2.50
+    },
+    {
+        "item_id": "m72",
+        "platform_name": "DoorDash",
+        "base_price": 17.50,
+        "delivery_fee": 3.50
+    },
+    {
+        "item_id": "m72",
+        "platform_name": "Grubhub",
+        "base_price": 16.00,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m73",
+        "platform_name": "UberEats",
+        "base_price": 17.99,
+        "delivery_fee": 2.50
+    },
+    {
+        "item_id": "m73",
+        "platform_name": "DoorDash",
+        "base_price": 18.50,
+        "delivery_fee": 3.50
+    },
+    {
+        "item_id": "m73",
+        "platform_name": "Grubhub",
+        "base_price": 17.00,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m74",
+        "platform_name": "UberEats",
+        "base_price": 15.99,
+        "delivery_fee": 2.50
+    },
+    {
+        "item_id": "m74",
+        "platform_name": "DoorDash",
+        "base_price": 16.50,
+        "delivery_fee": 3.50
+    },
+    {
+        "item_id": "m74",
+        "platform_name": "Grubhub",
+        "base_price": 15.00,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m75",
+        "platform_name": "UberEats",
+        "base_price": 9.99,
+        "delivery_fee": 2.50
+    },
+    {
+        "item_id": "m75",
+        "platform_name": "DoorDash",
+        "base_price": 10.50,
+        "delivery_fee": 3.50
+    },
+    {
+        "item_id": "m75",
+        "platform_name": "Grubhub",
+        "base_price": 9.00,
+        "delivery_fee": 1.50
+    },
+    {
+        "item_id": "m81",
+        "platform_name": "UberEats",
+        "base_price": 13.99,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m81",
+        "platform_name": "DoorDash",
+        "base_price": 13.50,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m81",
+        "platform_name": "Grubhub",
+        "base_price": 14.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m82",
+        "platform_name": "UberEats",
+        "base_price": 12.99,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m82",
+        "platform_name": "DoorDash",
+        "base_price": 12.50,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m82",
+        "platform_name": "Grubhub",
+        "base_price": 13.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m83",
+        "platform_name": "UberEats",
+        "base_price": 11.99,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m83",
+        "platform_name": "DoorDash",
+        "base_price": 11.50,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m83",
+        "platform_name": "Grubhub",
+        "base_price": 12.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m84",
+        "platform_name": "UberEats",
+        "base_price": 10.99,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m84",
+        "platform_name": "DoorDash",
+        "base_price": 10.50,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m84",
+        "platform_name": "Grubhub",
+        "base_price": 11.50,
+        "delivery_fee": 3.99
+    },
+    {
+        "item_id": "m85",
+        "platform_name": "UberEats",
+        "base_price": 9.99,
+        "delivery_fee": 1.99
+    },
+    {
+        "item_id": "m85",
+        "platform_name": "DoorDash",
+        "base_price": 9.50,
+        "delivery_fee": 2.99
+    },
+    {
+        "item_id": "m85",
+        "platform_name": "Grubhub",
+        "base_price": 10.50,
+        "delivery_fee": 3.99
+    }
+]

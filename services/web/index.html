@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Po - Infinite Planner</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #f7f7f5;
+      font-family: 'Lato', sans-serif;
+      color: #111;
+    }
+
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    #ui-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Profile Sidebar styles */
+    #profileSidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 320px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      padding: 40px 30px;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow-y: auto;
+      pointer-events: auto;
+      font-family: 'Lato', sans-serif;
+    }
+
+    #profileSidebar.open {
+      right: 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #555;
+      transition: 0.2s;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+
+    .stats-list {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .diet-tag {
+      background: #eee;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .tags-container {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .saved-item {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+
+    .saved-item:hover {
+      border-color: #aaa;
+      background: #fcfcfc;
+    }
+
+    .saved-item div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .profile-h3 {
+      font-family: 'Playfair Display', serif;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+      margin-top: 30px;
+      color: #222;
+    }
+
+    .nav-left {
+      flex: 1;
+    }
+
+    .nav-center {
+      flex: 2;
+    }
+
+    .nav-right {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* Floating Search Bar */
+    .search-wrapper {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      pointer-events: auto;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 5px 20px 5px 5px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .user-profile:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: scale(1.02);
+    }
+
+    .user-profile .avatar {
+      background: #222;
+      color: #fff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+    }
+
+    /* Top Nav & Search */
+    .top-nav {
+      position: fixed;
+      top: 30px;
+      left: 50px;
+      right: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+      pointer-events: auto;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .search-container {
+      display: flex;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(15px);
+      padding: 15px 20px;
+      border-radius: 40px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .search-container input {
+      border: none;
+      background: transparent;
+      width: 500px;
+      padding: 5px 15px;
+      font-size: 1.15rem;
+      font-family: 'Lato', sans-serif;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: #555;
+    }
+
+    .btn-icon {
+      background: transparent;
+      color: #222;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .btn-icon:hover {
+      background: #f0f0f0;
+    }
+
+    /* Loading */
+    #loadingOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(247, 247, 245, 0.9);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      transition: opacity 0.4s;
+    }
+
+    /* Slide Content */
+    .slide-content {
+      position: absolute;
+      top: 25%;
+      left: 8%;
+      width: 35%;
+      max-width: 500px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease-out;
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    .slide-content.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 3rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.1;
+      color: #0d0d0d;
+    }
+
+    .catalogue-number {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #777;
+      margin-bottom: 1rem;
+      display: inline-block;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      row-gap: 0.8rem;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .meta-label {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      font-size: 0.75rem;
+      align-self: center;
+      font-weight: 700;
+    }
+
+    .meta-value {
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      color: #222;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .action-link {
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      transition: opacity 0.2s;
+    }
+
+    .action-link:hover {
+      opacity: 0.8;
+    }
+
+    .bg-map {
+      background: #4285F4;
+    }
+
+    .bg-order {
+      background: #FF3008;
+    }
+
+    /* Coach Panel */
+    #coach-panel {
+      position: fixed;
+      bottom: 40px;
+      left: 50px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      pointer-events: auto;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transform: translateY(150%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #coach-panel.visible {
+      transform: translateY(0);
+    }
+
+    .coach-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .coach-text {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #444;
+      margin: 0;
+    }
+
+    .feedback-section {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .feedback-section select,
+    .feedback-section input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Lato', sans-serif;
+      outline: none;
+    }
+
+    .feedback-section input {
+      width: 60px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="profileSidebar">
+    <div class="close-btn" onclick="document.getElementById('profileSidebar').classList.remove('open')">✕</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 5px;">Saran Bluri</h2>
+    <p style="color: #666; margin-top: 0; font-size: 0.9rem;">Food Po Premium</p>
+
+    <h3 class="profile-h3">Health Stats</h3>
+    <ul class="stats-list">
+      <li><strong>Current Weight:</strong> 160 lbs</li>
+      <li><strong>Current Body Fat:</strong> 24%</li>
+      <li><strong>Target Body Fat:</strong> 15%</li>
+      <li><strong>Activity Level:</strong> Active (5x/wk)</li>
+    </ul>
+
+    <h3 class="profile-h3">Goals & Diet</h3>
+    <div class="tags-container">
+      <span class="diet-tag">High Protein</span>
+      <span class="diet-tag">No Egg</span>
+      <span class="diet-tag">Cut Phase</span>
+    </div>
+
+    <h3 class="profile-h3">Saved Favorites</h3>
+    <div class="saved-item">
+      <div><strong>Protein House</strong> <span style="color:#f39c12">★ 4.8</span></div>
+      <div style="font-size: 0.8rem; color: #888; margin-top: 5px;">Healthy Bowls & Salads</div>
+    </div>
+    <div class="saved-item">
+      <div><strong>Superfood Bowl</strong> <span style="font-weight: 700;">★ 9/10</span></div>
+      <div style="font-size: 0.8rem; color: #888; margin-top: 5px;">from Green Bowl Co.</div>
+    </div>
+    <div class="saved-item">
+      <div><strong>Steak & Eggs</strong> <span style="font-weight: 700;">★ 10/10</span></div>
+      <div style="font-size: 0.8rem; color: #888; margin-top: 5px;">from Protein House</div>
+    </div>
+  </div>
+
+  <div class="top-nav">
+    <div class="nav-left">
+      <div class="logo">Food Po</div>
+    </div>
+    <div class="nav-center"></div>
+    <div class="nav-right">
+      <div class="user-profile" onclick="document.getElementById('profileSidebar').classList.add('open')">
+        <div class="avatar">SB</div>
+        <span>Saran Bluri</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-wrapper">
+    <div class="search-container">
+      <input type="text" id="queryInput" placeholder="Describe your perfect healthy meal..." />
+      <button class="btn-icon" id="micBtn" onclick="startDictation()" title="Speak to Coach">🎤</button>
+      <button class="btn-primary" onclick="askCoach()">Ask Coach</button>
+    </div>
+  </div>
+
+  <div id="loadingOverlay" class="hidden">
+    <div style="margin-bottom: 20px;">Analyzing constraints...</div>
+    <div style="font-size: 1rem; font-family: 'Lato', sans-serif; color: #666;">Crafting personalized options</div>
+  </div>
+
+  <div id="canvas-container"></div>
+  <div id="ui-layer">
+    <div class="slide-content active" id="slide-0">
+      <span class="catalogue-number">Trending Recommendation</span>
+      <h1>Avocado <br>Toast</h1>
+      <div class="meta-grid">
+        <span class="meta-label">Restaurant</span> <span class="meta-value">Morning Grind</span>
+        <span class="meta-label">Total Price</span> <span class="meta-value"><strong>$12.50</strong></span>
+        <span class="meta-label">Diet Tags</span> <span class="meta-value">Vegan, High Fiber</span>
+      </div>
+      <p style="color:#444; line-height: 1.6;">Artisan sourdough topped with smashed avocado, radishes, and a dash of
+        chili flakes.</p>
+    </div>
+    <div class="slide-content" id="slide-1">
+      <span class="catalogue-number">Trending Recommendation</span>
+      <h1>Protein <br>Omelette</h1>
+      <div class="meta-grid">
+        <span class="meta-label">Restaurant</span> <span class="meta-value">Eggcellent</span>
+        <span class="meta-label">Total Price</span> <span class="meta-value"><strong>$14.00</strong></span>
+        <span class="meta-label">Diet Tags</span> <span class="meta-value">Keto, High Protein</span>
+      </div>
+      <p style="color:#444; line-height: 1.6;">Fluffy cage-free egg omelette stuffed with spinach, feta, and turkey
+        sausage.</p>
+    </div>
+    <div class="slide-content" id="slide-2">
+      <span class="catalogue-number">Trending Recommendation</span>
+      <h1>Southwest <br>Salad</h1>
+      <div class="meta-grid">
+        <span class="meta-label">Restaurant</span> <span class="meta-value">TexMex Greens</span>
+        <span class="meta-label">Total Price</span> <span class="meta-value"><strong>$16.50</strong></span>
+        <span class="meta-label">Diet Tags</span> <span class="meta-value">Low Carb</span>
+      </div>
+      <p style="color:#444; line-height: 1.6;">Crisp greens topped with grilled chicken, black beans, corn, and a zesty
+        cilantro lime dressing.</p>
+    </div>
+    <div class="slide-content" id="slide-3">
+      <span class="catalogue-number">Trending Recommendation</span>
+      <h1>Turkey <br>Bowl</h1>
+      <div class="meta-grid">
+        <span class="meta-label">Restaurant</span> <span class="meta-value">Lean Gains</span>
+        <span class="meta-label">Total Price</span> <span class="meta-value"><strong>$15.00</strong></span>
+        <span class="meta-label">Diet Tags</span> <span class="meta-value">High Protein, Post-Workout</span>
+      </div>
+      <p style="color:#444; line-height: 1.6;">Ground lean turkey over brown rice with steamed broccoli and a light
+        teriyaki glaze.</p>
+    </div>
+    <div class="slide-content" id="slide-4">
+      <span class="catalogue-number">Trending Recommendation</span>
+      <h1>Veg Medley <br>Plate</h1>
+      <div class="meta-grid">
+        <span class="meta-label">Restaurant</span> <span class="meta-value">Green Market</span>
+        <span class="meta-label">Total Price</span> <span class="meta-value"><strong>$13.50</strong></span>
+        <span class="meta-label">Diet Tags</span> <span class="meta-value">Vegan, Nutrient Dense</span>
+      </div>
+      <p style="color:#444; line-height: 1.6;">A colorful market plate featuring roasted sweet potatoes, brussels
+        sprouts, and tahini drizzle.</p>
+    </div>
+  </div>
+
+  <div id="coach-panel">
+    <h3 class="coach-header">Coach Analytics</h3>
+    <p class="coach-text" id="coachTextDisplay"></p>
+    <audio id="coachAudio" controls autoplay style="height: 30px; width: 100%;"></audio>
+
+    <div class="feedback-section">
+      <select id="chosenSelect" style="flex:1;"></select>
+      <input type="number" id="ratingInput" min="1" max="10" placeholder="Rating (1-10)" value="8" />
+      <button class="btn-primary" onclick="sendFeedback()">Train AI</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    const API = "http://localhost:8000";
+    let currentData = null;
+    let userId = "user_" + Math.floor(Math.random() * 9999);
+
+    // ThreeJS variables
+    const CONFIG = {
+      slideCount: 5,
+      spacingX: 45,
+      pWidth: 16,
+      pHeight: 20,
+      camZ: 32,
+      wallAngleY: -0.20,
+      snapDelay: 200,
+      lerpSpeed: 0.06
+    };
+    const totalGalleryWidth = CONFIG.slideCount * CONFIG.spacingX;
+    let scene, camera, renderer, galleryGroup;
+    let paintingGroups = [];
+    let currentScroll = 0;
+    let targetScroll = 0;
+    let mouse = { x: 0, y: 0 };
+    const textureLoader = new THREE.TextureLoader();
+
+    function init3D() {
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf7f7f5);
+      scene.fog = new THREE.Fog(0xf7f7f5, 10, 110);
+
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 0, CONFIG.camZ);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+      const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+      scene.add(ambient);
+      const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      dirLight.position.set(10, 20, 10);
+      scene.add(dirLight);
+
+      galleryGroup = new THREE.Group();
+      scene.add(galleryGroup);
+
+      const planeGeo = new THREE.PlaneGeometry(CONFIG.pWidth, CONFIG.pHeight);
+
+      // Load the user's manual local images from the /imgs folder.
+      // Use absolute pathing for local dev environment file:/// protocol.
+      const LOCAL_PATH = "./imgs";
+      const initImages = [
+        `${LOCAL_PATH}/avocado toast.avif`,
+        `${LOCAL_PATH}/omelette.avif`,
+        `${LOCAL_PATH}/south by southwewst.avif`,
+        `${LOCAL_PATH}/turkey bowl.avif`,
+        `${LOCAL_PATH}/veg medley market plate.avif`
+      ];
+
+      for (let i = 0; i < CONFIG.slideCount; i++) {
+        const group = new THREE.Group();
+        group.position.set(i * CONFIG.spacingX, 0, 0);
+
+        const mat = new THREE.MeshBasicMaterial({ map: textureLoader.load(initImages[i]) });
+        const mesh = new THREE.Mesh(planeGeo, mat);
+        const edges = new THREE.EdgesGeometry(planeGeo);
+        const outline = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x333333 }));
+
+        const shadowGeo = new THREE.PlaneGeometry(CONFIG.pWidth, CONFIG.pHeight);
+        const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.15 });
+        const shadow = new THREE.Mesh(shadowGeo, shadowMat);
+        shadow.position.set(0.8, -0.8, -0.5);
+
+        const lineZ = -1;
+        const lineLen = CONFIG.spacingX;
+        const lineGeo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(-lineLen / 2, 14, lineZ), new THREE.Vector3(lineLen / 2, 14, lineZ),
+          new THREE.Vector3(-lineLen / 2, -14, lineZ), new THREE.Vector3(lineLen / 2, -14, lineZ)
+        ]);
+        const lines = new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0xdddddd }));
+
+        group.add(shadow);
+        group.add(mesh);
+        group.add(outline);
+        group.add(lines);
+
+        galleryGroup.add(group);
+        paintingGroups.push(group);
+      }
+
+      galleryGroup.rotation.y = CONFIG.wallAngleY;
+      galleryGroup.position.x = 8;
+
+      // Scroll events
+      let snapTimer = null;
+      function snapToNearest() {
+        const index = Math.round(targetScroll / CONFIG.spacingX);
+        targetScroll = index * CONFIG.spacingX;
+      }
+
+      window.addEventListener('wheel', (e) => {
+        targetScroll += e.deltaY * 0.1;
+        if (snapTimer) clearTimeout(snapTimer);
+        snapTimer = setTimeout(snapToNearest, CONFIG.snapDelay);
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      animate();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      currentScroll += (targetScroll - currentScroll) * CONFIG.lerpSpeed;
+      const xMove = currentScroll * Math.cos(CONFIG.wallAngleY);
+      const zMove = currentScroll * Math.sin(CONFIG.wallAngleY);
+      camera.position.x = xMove;
+      camera.position.z = CONFIG.camZ - zMove;
+
+      paintingGroups.forEach((group, i) => {
+        const originalX = i * CONFIG.spacingX;
+        const distFromCam = currentScroll - originalX;
+        const shift = Math.round(distFromCam / totalGalleryWidth) * totalGalleryWidth;
+        group.position.x = originalX + shift;
+      });
+
+      camera.rotation.x = mouse.y * 0.03;
+      camera.rotation.y = -mouse.x * 0.03;
+
+      updateGalleryUI(currentScroll);
+      renderer.render(scene, camera);
+    }
+
+    function updateGalleryUI(scrollX) {
+      const rawIndex = Math.round(scrollX / CONFIG.spacingX);
+      const safeIndex = ((rawIndex % CONFIG.slideCount) + CONFIG.slideCount) % CONFIG.slideCount;
+      for (let i = 0; i < CONFIG.slideCount; i++) {
+        const el = document.getElementById(`slide-${i}`);
+        if (el) {
+          if (i === safeIndex) el.classList.add('active');
+          else el.classList.remove('active');
+        }
+      }
+    }
+
+    init3D();
+
+    // ---------------------------------------------------------
+    // API LOGIC
+    // ---------------------------------------------------------
+
+    function startDictation() {
+      if (window.hasOwnProperty('webkitSpeechRecognition') || window.hasOwnProperty('SpeechRecognition')) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+
+        const micBtn = document.getElementById("micBtn");
+        micBtn.innerText = "Listening...";
+        micBtn.style.color = "red";
+        micBtn.disabled = true;
+
+        recognition.start();
+
+        recognition.onresult = function (e) {
+          document.getElementById('queryInput').value = e.results[0][0].transcript;
+          recognition.stop();
+          resetMicBtn();
+          askCoach();
+        };
+
+        recognition.onerror = function (e) {
+          recognition.stop();
+          resetMicBtn();
+          alert("Microphone error: " + e.error);
+        }
+      } else {
+        alert("Voice Recognition not supported directly here.");
+      }
+    }
+
+    function resetMicBtn() {
+      const micBtn = document.getElementById("micBtn");
+      micBtn.innerText = "🎤";
+      micBtn.style.color = "#222";
+      micBtn.disabled = false;
+    }
+
+    async function askCoach() {
+      const q = document.getElementById("queryInput").value;
+      if (!q) return;
+
+      document.getElementById("loadingOverlay").classList.remove("hidden");
+      document.getElementById("coach-panel").classList.remove("visible");
+
+      try {
+        const res = await fetch(`${API}/message`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user_id: userId, message: q })
+        });
+        currentData = await res.json();
+        renderResults();
+        targetScroll = 0; // jump back to first slide
+      } catch (e) {
+        alert("Failed to connect to API server.");
+      } finally {
+        document.getElementById("loadingOverlay").classList.add("hidden");
+      }
+    }
+
+    function renderResults() {
+      const uiLayer = document.getElementById("ui-layer");
+      const select = document.getElementById("chosenSelect");
+      uiLayer.innerHTML = "";
+      select.innerHTML = "";
+
+      if (currentData.top_results.length === 0) {
+        uiLayer.innerHTML = `<div class="slide-content active"><h1>No matches found.</h1><p>Try adjusting your budget or tags.</p></div>`;
+        return;
+      }
+
+      document.getElementById("coach-panel").classList.add("visible");
+      document.getElementById("coachTextDisplay").innerText = currentData.coach_text;
+
+      const audio = document.getElementById("coachAudio");
+      audio.src = currentData.coach_audio_url;
+      audio.play().catch(e => console.log("Autoplay blocked", e));
+
+      currentData.top_results.forEach((item, idx) => {
+        if (idx >= CONFIG.slideCount) return;
+
+        // Update 3D canvas textures dynamically with AI Food Photography
+        let foodQuery = encodeURIComponent(`${item.name} delicious food professional photography`);
+        let newImgUrl = `https://image.pollinations.ai/prompt/${foodQuery}?width=800&height=1000&nologo=true&seed=${Math.floor(Math.random() * 1000)}`;
+
+        if (paintingGroups[idx]) {
+          const mesh = paintingGroups[idx].children[1];
+          mesh.material.map = textureLoader.load(newImgUrl);
+          mesh.material.needsUpdate = true;
+        }
+
+        // Generate UI overlay
+        let mapUrl = `https://maps.google.com/?q=${encodeURIComponent(item.restaurant)}`;
+        let orderUrl = `https://www.doordash.com/search/store/${encodeURIComponent(item.restaurant)}`;
+
+        let isGrubhub = item.best_platform.platform.toLowerCase().includes('grub');
+        let isUber = item.best_platform.platform.toLowerCase().includes('uber');
+        let colorClass = isGrubhub ? 'style="background:#FF8000;"' : isUber ? 'style="background:#000000;"' : 'class="bg-order"';
+
+        uiLayer.innerHTML += `
+                    <div class="slide-content ${idx === 0 ? 'active' : ''}" id="slide-${idx}">
+                        <span class="catalogue-number">Option 0${idx + 1}</span>
+                        <h1>${item.name}</h1>
+                        <div class="meta-grid">
+                            <span class="meta-label">Restaurant</span> 
+                            <span class="meta-value">${item.restaurant}</span>
+                            
+                            <span class="meta-label">Total Price</span> 
+                            <span class="meta-value"><strong>$${item.best_platform.effective_price.toFixed(2)}</strong> (${item.best_platform.platform})</span>
+                            
+                            <span class="meta-label">Nutrition</span> 
+                            <span class="meta-value">Protein: ${item.protein_est}g</span>
+                            
+                            <span class="meta-label">Diet Tags</span> 
+                            <span class="meta-value">${item.tags.join(", ") || "None"}</span>
+                        </div>
+                        <div class="actions">
+                            <a href="${mapUrl}" target="_blank" class="action-link bg-map">📍 Map</a>
+                            <a href="${orderUrl}" target="_blank" class="action-link" ${colorClass}>🚗 Order on ${item.best_platform.platform}</a>
+                        </div>
+                    </div>
+                `;
+
+        // Setup feedback dropdown
+        const opt = document.createElement("option");
+        opt.value = item.item_id;
+        opt.innerText = `Option ${idx + 1}: ${item.name} ($${item.best_platform.effective_price.toFixed(2)})`;
+        select.appendChild(opt);
+      });
+    }
+
+    async function sendFeedback() {
+      const chosenId = document.getElementById("chosenSelect").value;
+      const rating = parseInt(document.getElementById("ratingInput").value);
+      const notChosen = currentData.top_results
+        .filter(r => r.item_id !== chosenId)
+        .map(r => r.item_id);
+
+      document.getElementById("loadingOverlay").classList.remove("hidden");
+      document.getElementById("coach-panel").classList.remove("visible");
+
+      try {
+        await fetch(`${API}/feedback`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user_id: userId,
+            chosen_item_id: chosenId,
+            not_chosen_item_ids: notChosen,
+            rating: rating
+          })
+        });
+        askCoach(); // Reroll automatically
+      } catch (e) {
+        alert("Feedback failed.");
+        document.getElementById("loadingOverlay").classList.add("hidden");
+      }
+    }
+  </script>
+</body>
+
+</html>

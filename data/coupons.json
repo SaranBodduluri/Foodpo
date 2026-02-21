@@ -1,0 +1,32 @@
+[
+    {
+        "code": "UBER10",
+        "platform": "UberEats",
+        "discount_value": 10.0,
+        "min_spend": 30.0
+    },
+    {
+        "code": "DASH5",
+        "platform": "DoorDash",
+        "discount_value": 5.0,
+        "min_spend": 15.0
+    },
+    {
+        "code": "GRUBFREE",
+        "platform": "Grubhub",
+        "discount_value": 3.99,
+        "min_spend": 20.0
+    },
+    {
+        "code": "TREAT15",
+        "platform": "UberEats",
+        "discount_value": 15.0,
+        "min_spend": 40.0
+    },
+    {
+        "code": "DOOR20",
+        "platform": "DoorDash",
+        "discount_value": 0.20,
+        "min_spend": 25.0
+    }
+]

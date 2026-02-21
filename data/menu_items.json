@@ -1,0 +1,413 @@
+[
+    {
+        "item_id": "m11",
+        "restaurant_id": "r1",
+        "name": "Superfood Bowl",
+        "tags": [
+            "veg"
+        ],
+        "calories_est": 450,
+        "protein_est": 15
+    },
+    {
+        "item_id": "m12",
+        "restaurant_id": "r1",
+        "name": "Quinoa Salad",
+        "tags": [
+            "veg"
+        ],
+        "calories_est": 350,
+        "protein_est": 12
+    },
+    {
+        "item_id": "m13",
+        "restaurant_id": "r1",
+        "name": "Chicken Protein Bowl",
+        "tags": [
+            "high_protein"
+        ],
+        "calories_est": 600,
+        "protein_est": 45
+    },
+    {
+        "item_id": "m14",
+        "restaurant_id": "r1",
+        "name": "Tofu Power Bowl",
+        "tags": [
+            "veg",
+            "high_protein"
+        ],
+        "calories_est": 500,
+        "protein_est": 25
+    },
+    {
+        "item_id": "m15",
+        "restaurant_id": "r1",
+        "name": "Acai Bowl",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 300,
+        "protein_est": 5
+    },
+    {
+        "item_id": "m21",
+        "restaurant_id": "r2",
+        "name": "Steak & Eggs",
+        "tags": [
+            "high_protein"
+        ],
+        "calories_est": 700,
+        "protein_est": 55
+    },
+    {
+        "item_id": "m22",
+        "restaurant_id": "r2",
+        "name": "Grilled Chicken Breast",
+        "tags": [
+            "high_protein",
+            "no_egg"
+        ],
+        "calories_est": 400,
+        "protein_est": 40
+    },
+    {
+        "item_id": "m23",
+        "restaurant_id": "r2",
+        "name": "Salmon Filet",
+        "tags": [
+            "high_protein",
+            "no_egg"
+        ],
+        "calories_est": 500,
+        "protein_est": 35
+    },
+    {
+        "item_id": "m24",
+        "restaurant_id": "r2",
+        "name": "Turkey Meatballs",
+        "tags": [
+            "high_protein"
+        ],
+        "calories_est": 450,
+        "protein_est": 30
+    },
+    {
+        "item_id": "m25",
+        "restaurant_id": "r2",
+        "name": "Egg White Omelette",
+        "tags": [
+            "veg",
+            "high_protein"
+        ],
+        "calories_est": 250,
+        "protein_est": 20
+    },
+    {
+        "item_id": "m31",
+        "restaurant_id": "r3",
+        "name": "Classic Cheeseburger",
+        "tags": [],
+        "calories_est": 800,
+        "protein_est": 30
+    },
+    {
+        "item_id": "m32",
+        "restaurant_id": "r3",
+        "name": "Double Veggie Burger",
+        "tags": [
+            "veg"
+        ],
+        "calories_est": 600,
+        "protein_est": 20
+    },
+    {
+        "item_id": "m33",
+        "restaurant_id": "r3",
+        "name": "Bacon Double Smash",
+        "tags": [],
+        "calories_est": 1000,
+        "protein_est": 45
+    },
+    {
+        "item_id": "m34",
+        "restaurant_id": "r3",
+        "name": "Crispy Chicken Sandwich",
+        "tags": [],
+        "calories_est": 750,
+        "protein_est": 25
+    },
+    {
+        "item_id": "m35",
+        "restaurant_id": "r3",
+        "name": "Black Bean Burger",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 550,
+        "protein_est": 18
+    },
+    {
+        "item_id": "m41",
+        "restaurant_id": "r4",
+        "name": "Spicy Tuna Roll",
+        "tags": [
+            "no_egg"
+        ],
+        "calories_est": 400,
+        "protein_est": 20
+    },
+    {
+        "item_id": "m42",
+        "restaurant_id": "r4",
+        "name": "Salmon Avocado Roll",
+        "tags": [
+            "no_egg"
+        ],
+        "calories_est": 450,
+        "protein_est": 22
+    },
+    {
+        "item_id": "m43",
+        "restaurant_id": "r4",
+        "name": "Veggie Roll",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 300,
+        "protein_est": 6
+    },
+    {
+        "item_id": "m44",
+        "restaurant_id": "r4",
+        "name": "Sashimi Combo",
+        "tags": [
+            "high_protein",
+            "no_egg"
+        ],
+        "calories_est": 350,
+        "protein_est": 40
+    },
+    {
+        "item_id": "m45",
+        "restaurant_id": "r4",
+        "name": "Edamame",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 150,
+        "protein_est": 12
+    },
+    {
+        "item_id": "m51",
+        "restaurant_id": "r5",
+        "name": "Chicken Tacos (3)",
+        "tags": [
+            "no_egg"
+        ],
+        "calories_est": 600,
+        "protein_est": 35
+    },
+    {
+        "item_id": "m52",
+        "restaurant_id": "r5",
+        "name": "Beef Burrito",
+        "tags": [],
+        "calories_est": 850,
+        "protein_est": 30
+    },
+    {
+        "item_id": "m53",
+        "restaurant_id": "r5",
+        "name": "Veggie Fajitas",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 500,
+        "protein_est": 15
+    },
+    {
+        "item_id": "m54",
+        "restaurant_id": "r5",
+        "name": "Shrimp Tacos (3)",
+        "tags": [
+            "no_egg"
+        ],
+        "calories_est": 550,
+        "protein_est": 25
+    },
+    {
+        "item_id": "m55",
+        "restaurant_id": "r5",
+        "name": "Bean & Cheese Quesadilla",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 650,
+        "protein_est": 20
+    },
+    {
+        "item_id": "m61",
+        "restaurant_id": "r6",
+        "name": "Beyond Burger Classic",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 600,
+        "protein_est": 20
+    },
+    {
+        "item_id": "m62",
+        "restaurant_id": "r6",
+        "name": "Vegan Mac & Cheese",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 500,
+        "protein_est": 10
+    },
+    {
+        "item_id": "m63",
+        "restaurant_id": "r6",
+        "name": "Tempeh Wrap",
+        "tags": [
+            "veg",
+            "high_protein",
+            "no_egg"
+        ],
+        "calories_est": 450,
+        "protein_est": 25
+    },
+    {
+        "item_id": "m64",
+        "restaurant_id": "r6",
+        "name": "Lentil Soup",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 300,
+        "protein_est": 15
+    },
+    {
+        "item_id": "m65",
+        "restaurant_id": "r6",
+        "name": "Chickpea Salad",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 400,
+        "protein_est": 12
+    },
+    {
+        "item_id": "m71",
+        "restaurant_id": "r7",
+        "name": "Margherita Pizza",
+        "tags": [
+            "veg"
+        ],
+        "calories_est": 900,
+        "protein_est": 35
+    },
+    {
+        "item_id": "m72",
+        "restaurant_id": "r7",
+        "name": "Pepperoni Pizza",
+        "tags": [],
+        "calories_est": 1000,
+        "protein_est": 40
+    },
+    {
+        "item_id": "m73",
+        "restaurant_id": "r7",
+        "name": "Meat Lovers Pizza",
+        "tags": [
+            "high_protein"
+        ],
+        "calories_est": 1200,
+        "protein_est": 55
+    },
+    {
+        "item_id": "m74",
+        "restaurant_id": "r7",
+        "name": "Vegan Supreme Pizza",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 850,
+        "protein_est": 25
+    },
+    {
+        "item_id": "m75",
+        "restaurant_id": "r7",
+        "name": "Garlic Knots",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 400,
+        "protein_est": 8
+    },
+    {
+        "item_id": "m81",
+        "restaurant_id": "r8",
+        "name": "Cobb Salad",
+        "tags": [
+            "high_protein"
+        ],
+        "calories_est": 600,
+        "protein_est": 35
+    },
+    {
+        "item_id": "m82",
+        "restaurant_id": "r8",
+        "name": "Caesar Salad with Chicken",
+        "tags": [
+            "high_protein"
+        ],
+        "calories_est": 550,
+        "protein_est": 40
+    },
+    {
+        "item_id": "m83",
+        "restaurant_id": "r8",
+        "name": "Greek Salad",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 400,
+        "protein_est": 12
+    },
+    {
+        "item_id": "m84",
+        "restaurant_id": "r8",
+        "name": "Southwest Salad",
+        "tags": [
+            "veg"
+        ],
+        "calories_est": 450,
+        "protein_est": 15
+    },
+    {
+        "item_id": "m85",
+        "restaurant_id": "r8",
+        "name": "Spinach & Goat Cheese",
+        "tags": [
+            "veg",
+            "no_egg"
+        ],
+        "calories_est": 350,
+        "protein_est": 10
+    }
+]
