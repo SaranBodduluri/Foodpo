@@ -821,23 +821,43 @@
       currentData.top_results.forEach((item, idx) => {
         if (idx >= CONFIG.slideCount) return;
 
-        // Update 3D canvas textures dynamically with AI Food Photography
-        let foodQuery = encodeURIComponent(`${item.name} delicious food professional photography`);
-        let newImgUrl = `https://image.pollinations.ai/prompt/${foodQuery}?width=800&height=1000&nologo=true&seed=${Math.floor(Math.random() * 1000)}`;
-
-        if (paintingGroups[idx]) {
-          const mesh = paintingGroups[idx].children[1];
-          mesh.material.map = textureLoader.load(newImgUrl);
-          mesh.material.needsUpdate = true;
-        }
+        // Fetch from Pexels API
+        fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(item.name + ' food')}&per_page=1`, {
+          headers: {
+            Authorization: 'qfFd8KXszWxC7FWzjJqQUQRVfxSBWDG5OSVXLMFtfz1c5iaEisPa3w9Q'
+          }
+        })
+          .then(res => res.json())
+          .then(data => {
+            let newImgUrl;
+            if (data.photos && data.photos.length > 0) {
+              newImgUrl = data.photos[0].src.large;
+            } else {
+              // Fallback if no image found
+              let foodQuery = encodeURIComponent(`${item.name} delicious food professional photography`);
+              newImgUrl = `https://image.pollinations.ai/prompt/${foodQuery}?width=800&height=1000&nologo=true&seed=${Math.floor(Math.random() * 1000)}`;
+            }
+            if (paintingGroups[idx]) {
+              const mesh = paintingGroups[idx].children[1];
+              mesh.material.map = textureLoader.load(newImgUrl);
+              mesh.material.needsUpdate = true;
+            }
+          })
+          .catch(err => console.error("Pexels error:", err));
 
         // Generate UI overlay
-        let mapUrl = `https://maps.google.com/?q=${encodeURIComponent(item.restaurant)}`;
+        let mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.restaurant)}`;
         let orderUrl = `https://www.doordash.com/search/store/${encodeURIComponent(item.restaurant)}`;
 
         let isGrubhub = item.best_platform.platform.toLowerCase().includes('grub');
         let isUber = item.best_platform.platform.toLowerCase().includes('uber');
         let colorClass = isGrubhub ? 'style="background:#FF8000;"' : isUber ? 'style="background:#000000;"' : 'class="bg-order"';
+
+        if (isGrubhub) {
+          orderUrl = `https://www.grubhub.com/`;
+        } else if (isUber) {
+          orderUrl = `https://www.ubereats.com/`;
+        }
 
         uiLayer.innerHTML += `
                     <div class="slide-content ${idx === 0 ? 'active' : ''}" id="slide-${idx}">
