@@ -212,29 +212,75 @@ def handle_message(req: MessageRequest):
     coach_scalar = user_weights_map.get("coach_style", 0.0)
     
     if coach_scalar > 1.0:
-        base_tone = "Yo, let's crush it! Here are the ultimate fuel options to hit your macros today! "
         style = "hype"
+        tone_desc = "extremely energetic, hyped, and enthusiastic"
     elif coach_scalar < -1.0:
-        base_tone = "Hmm, I've carefully selected these gentle, nourishing options just for you. Take your time deciding. "
         style = "gentle"
+        tone_desc = "gentle, soft, nurturing, and calm"
     else:
-        base_tone = "Hey there! Here are the top 3 options based on your exact preferences. "
         style = "neutral"
-        
-    spoken_options = []
-    for idx, item in enumerate(top_3):
-        price = item['best_platform']['effective_price']
-        # Replace decimals with "dollars and cents" to make TTS engine read it properly
-        price_str = f"{int(price)} dollars and {int((price % 1) * 100)} cents" if (price % 1) > 0 else f"{int(price)} dollars"
-        
-        if style == "hype":
-            spoken_options.append(f"Option {idx + 1}, BOOM! We've got the {item['name']} for just {price_str}! ")
-        elif style == "gentle":
-            spoken_options.append(f"For option {idx + 1}, perhaps try the beautiful {item['name']}, coming in at {price_str}. ")
-        else:
-            spoken_options.append(f"Number {idx + 1} is the {item['name']} which will cost {price_str}. ")
+        tone_desc = "helpful, friendly, and straightforward"
 
-    coach_text = base_tone + "".join(spoken_options)
+    coach_text = ""
+    airia_api_key = os.getenv("AIRIA_API_KEY", "")
+    
+    if airia_api_key:
+        import requests
+        try:
+            # Provide the user's intent plus the structural context so Airia AI can form a tailored response
+            context_str = f"System: You are an AI Food Coach. The user asked: '{req.message}'. Tone: {tone_desc}.\nHere are the top 3 food options the system found:\n"
+            for idx, item in enumerate(top_3):
+                price = item['best_platform']['effective_price']
+                context_str += f"{idx+1}. {item['name']} from {item['restaurant']} for ${price:.2f}\n"
+            context_str += "\nRespond conversationally to the user about these options. Keep it under 3 sentences."
+
+            headers = {
+                "X-API-KEY": airia_api_key,
+                "Content-Type": "application/json"
+            }
+            res = requests.post(
+                "https://api.airia.ai/v2/PipelineExecution/89ba5741-ca1a-49a9-a618-e231d5c67a30",
+                headers=headers,
+                json={"userInput": context_str, "asyncOutput": False},
+                timeout=12
+            )
+            
+            if res.status_code == 200:
+                try:
+                    res_data = res.json()
+                    if isinstance(res_data, dict):
+                        coach_text = res_data.get("output", res_data.get("result", res_data.get("response", res_data.get("text", str(res_data)))))
+                    else:
+                        coach_text = str(res_data)
+                except ValueError:
+                    # Fallback to plain text if not JSON
+                    coach_text = res.text
+        except Exception as e:
+            print(f"Airia API failed: {e}")
+
+    # Fallback back to standard programmatic formatting if Airia API key is missing or request fails
+    if not coach_text:
+        if style == "hype":
+            base_tone = "Yo, let's crush it! Here are the ultimate fuel options to hit your macros today! "
+        elif style == "gentle":
+            base_tone = "Hmm, I've carefully selected these gentle, nourishing options just for you. Take your time deciding. "
+        else:
+            base_tone = "Hey there! Here are the top 3 options based on your exact preferences. "
+            
+        spoken_options = []
+        for idx, item in enumerate(top_3):
+            price = item['best_platform']['effective_price']
+            # Replace decimals with "dollars and cents" to make TTS engine read it properly
+            price_str = f"{int(price)} dollars and {int((price % 1) * 100)} cents" if (price % 1) > 0 else f"{int(price)} dollars"
+            
+            if style == "hype":
+                spoken_options.append(f"Option {idx + 1}, BOOM! We've got the {item['name']} for just {price_str}! ")
+            elif style == "gentle":
+                spoken_options.append(f"For option {idx + 1}, perhaps try the beautiful {item['name']}, coming in at {price_str}. ")
+            else:
+                spoken_options.append(f"Number {idx + 1} is the {item['name']} which will cost {price_str}. ")
+
+        coach_text = base_tone + "".join(spoken_options)
     
     from services.api.modulate_wrapper import generate_voice
     audio_url = generate_voice(coach_text, style)
