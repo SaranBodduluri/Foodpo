@@ -407,6 +407,42 @@
       font-size: 1.2rem;
       font-weight: 700;
       margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .coach-toggle {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.3s;
+      color: #555;
+    }
+
+    .coach-toggle:hover {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    #coach-panel.collapsed .coach-toggle {
+      transform: rotate(180deg);
+    }
+
+    .coach-body {
+      overflow: hidden;
+      max-height: 500px;
+      transition: max-height 0.35s ease, opacity 0.3s ease;
+      opacity: 1;
+    }
+
+    #coach-panel.collapsed .coach-body {
+      max-height: 0;
+      opacity: 0;
     }
 
     .coach-text {
@@ -566,14 +602,19 @@
   </div>
 
   <div id="coach-panel">
-    <h3 class="coach-header">Coach Analytics</h3>
-    <p class="coach-text" id="coachTextDisplay"></p>
-    <audio id="coachAudio" controls autoplay style="height: 30px; width: 100%;"></audio>
+    <h3 class="coach-header" onclick="toggleCoachPanel()">
+      <span>Coach Analytics</span>
+      <button class="coach-toggle" aria-label="Toggle coach panel">▼</button>
+    </h3>
+    <div class="coach-body">
+      <p class="coach-text" id="coachTextDisplay"></p>
+      <audio id="coachAudio" controls autoplay style="height: 30px; width: 100%;"></audio>
 
-    <div class="feedback-section">
-      <select id="chosenSelect" style="flex:1;"></select>
-      <input type="number" id="ratingInput" min="1" max="10" placeholder="Rating (1-10)" value="8" />
-      <button class="btn-primary" onclick="sendFeedback()">Train AI</button>
+      <div class="feedback-section">
+        <select id="chosenSelect" style="flex:1;"></select>
+        <input type="number" id="ratingInput" min="1" max="10" placeholder="Rating (1-10)" value="8" />
+        <button class="btn-primary" onclick="sendFeedback()">Train AI</button>
+      </div>
     </div>
   </div>
 
@@ -889,6 +930,10 @@
         opt.innerText = `Option ${idx + 1}: ${item.name} ($${item.best_platform.effective_price.toFixed(2)})`;
         select.appendChild(opt);
       });
+    }
+
+    function toggleCoachPanel() {
+      document.getElementById("coach-panel").classList.toggle("collapsed");
     }
 
     async function sendFeedback() {

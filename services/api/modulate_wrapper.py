@@ -30,20 +30,16 @@ def generate_voice(coach_text: str, style: str) -> str:
     try:
         client = OpenAI(api_key=api_key)
         
-        # We use a dynamic filename each time so the browser doesn't cache it rigidly
         audio_filename = f"response_{int(time.time())}.mp3"
         audio_path = os.path.join(STATIC_AUDIO_DIR, audio_filename)
         
-        response = client.audio.speech.create(
+        with client.audio.speech.with_streaming_response.create(
             model="tts-1",
             voice=openai_voice,
             input=coach_text
-        )
+        ) as response:
+            response.stream_to_file(audio_path)
         
-        # Save straight to the web folder
-        response.stream_to_file(audio_path)
-        
-        # Return path so local index.html frontend plays the newest MP3
         return f"./audio/{audio_filename}"
         
     except Exception as e:
